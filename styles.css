@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Занимаем всю высоту экрана */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение */
+    align-items: center;
+    justify-content: flex-start; /* Центрируем содержимое по вертикали */
+    background: linear-gradient(270deg, #1a1a2e, #16213e, #0f3460);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* Центрируем элементы по вертикали */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Отступ между навигацией и контентом */
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 4px;
+}
+
+.nav-item {
+    margin-left: auto; /* Отодвигаем навигационные элементы вправо */
+    margin-right: 15px; /* Отступы между элементами навигации */
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.container {
+   text-align: center;
+   width: 100%; /* Занимаем всю ширину контейнера */
+   padding-bottom: 20px; /* Отступ снизу для карточек */
+}
+
+.fire-ring {
+   position: relative;
+   display: inline-block;
+   padding: 40px; /* Отступы для текста */
+   border-radius: 50%;
+   z-index: 1; /* Убедимся, что кольцо выше фона */
+}
+
+.fire-ring::before {
+   content: '';
+   position: absolute;
+   top: -15px; /* Положение огненного кольца */
+   left: -15px; /* Положение огненного кольца */
+   right: -15px; /* Положение огненного кольца */
+   bottom: -15px; /* Положение огненного кольца */
+   border-radius: 50%;
+   background: conic-gradient(
+       #00f,
+       #6a0dad,
+       #00f,
+       #6a0dad,
+       #00f
+   );
+   z-index: -1; /* Помещаем кольцо позади текста */
+   filter: blur(20px); /* Нечеткость кольца */
+   animation: pulse-color 5s linear infinite; /* Добавляем анимацию для более плавного переливания */
+}
+
+@keyframes pulse-color {
+   0% { background-color: rgba(0,0,255,0.5); }
+   50% { background-color: rgba(106,0,173,0.5); }
+   100% { background-color: rgba(0,0,255,0.5); }
+}
+
+h1 {
+   font-size: 3rem;
+   color: #ffffff;
+}
+
+p {
+   font-size: 1.5rem;
+   color: #e0e0e0;
+   max-width: calc(100% - 80px); /* Ограничиваем ширину текста с учетом отступов */
+   overflow-wrap: break-word; /* Перенос длинных слов на новую строку */
+   text-align:center; 
+}
+
+.card-container {
+   display:flex ;
+   justify-content:center ;
+   margin-top:auto ; /* Отодвигаем карточки вниз */
+   flex-wrap: wrap; /* Позволяем карточкам переноситься на новую строку при необходимости */
+}
+
+.card {
+   width :200px ; /* Ширина карточки */
+   height :300px ; /* Высота карточки */
+   perspective :1000px ; /* Для эффекта переворота */
+   margin :10px ; /* Отступ между карточками */
+}
+
+.card-inner {
+   position:absolute ; 
+   width :100% ; 
+   height :100% ; 
+   transition :transform .6s ; 
+   transform-style :preserve-3d ; 
+}
+
+.card:hover .card-inner {
+   transform :rotateY(180deg) ; 
+}
+
+.card-front, .card-back {
+   position:absolute ; 
+   width :100% ; 
+   height :100% ; 
+   backface-visibility:hidden ; 
+   border-radius :15px ; 
+   display:flex ; 
+   flex-direction: column; /* Вертикальное расположение элементов внутри карточки */
+   justify-content:center ; 
+   align-items:center ; 
+   color:#fff ; 
+}
+
+.card-front h2, .card-back h2 {
+   font-size: 1.5rem; /* Размер заголовка на карточках */
+}
+
+.card-front p, .card-back p {
+   font-size: 1rem; /* Размер описания на карточках */
+}
+
+/* Стили для передней стороны карточки */
+.card-front {
+   background-color :rgba(255,255,255,.1) ; 
+}
+
+/* Стили для задней стороны карточки */
+.card-back {
+   background-color :rgba(50,50,200,.8) ; 
+   transform :rotateY(180deg) ; 
+}
+
+/* Анимация для эффекта переворота фона */
+@keyframes gradient {
+   0% {
+       background-position: 0% 50%;
+   }
+   50% {
+       background-position: 100% 50%;
+   }
+}
